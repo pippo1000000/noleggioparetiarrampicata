@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import ServicesSection from '../components/ServicesSection.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import EventsCarousel from '../components/EventsCarousel.astro';
+import FAQSection from '../components/FAQSection.astro';
+---
+
+<Layout>
+	<Navbar />
+	<main>
+		<Hero />
+		<ServicesSection />
+		<HowItWorks />
+		<EventsCarousel />
+		<FAQSection />
+	</main>
+</Layout>
+
+<style>
+	main {
+		min-height: 100vh;
+	}
+</style>

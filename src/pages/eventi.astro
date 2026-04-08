@@ -1,0 +1,209 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import { getCollection } from 'astro:content';
+
+const events = await getCollection('eventi');
+const sortedEvents = events.sort((a, b) => {
+  const dateA = a.data.date instanceof Date ? a.data.date.getTime() : 0;
+  const dateB = b.data.date instanceof Date ? b.data.date.getTime() : 0;
+  return dateB - dateA;
+});
+---
+
+<Layout title="I Nostri Eventi | Noleggio Strutture">
+  <Navbar />
+  
+  <main class="events-page">
+    <header class="page-header">
+      <div class="container">
+        <h1>I NOSTRI <span class="highlight">EVENTI</span></h1>
+        <p class="subtitle">Scopri i progetti che abbiamo realizzato e le sfide che abbiamo vinto.</p>
+      </div>
+    </header>
+
+    <section class="events-grid-section">
+      <div class="container">
+        <div class="events-grid">
+          {sortedEvents.map((event) => (
+            <div class="event-card-big">
+              <div class="image-area">
+                <img src={event.data.image} alt={event.data.title} />
+                <div class="date-overlay">
+                  {event.data.date.toLocaleDateString('it-IT', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </div>
+              </div>
+              <div class="info-area">
+                <span class="location-tag">{event.data.location}</span>
+                <h2>{event.data.title}</h2>
+                <p>{event.data.description}</p>
+                <div class="divider"></div>
+                {/* Content of the markdown file could be rendered here if needed */}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .events-page {
+    background-color: var(--color-bg-secondary);
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+  }
+
+  .page-header {
+    height: 70vh;
+    min-height: 600px;
+    background-image: url('/assets/eventi_hero_bg.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    padding: 0;
+  }
+
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65));
+    z-index: 1;
+  }
+
+  .page-header .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .page-header h1 {
+    font-size: clamp(3.5rem, 12vw, 7.5rem);
+    font-weight: 950;
+    margin-bottom: 20px;
+    color: white;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+  }
+
+  .page-header .highlight {
+    color: white;
+  }
+
+  .highlight {
+    color: var(--color-primary);
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+    color: white;
+    opacity: 0.9;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .events-grid-section {
+    padding: 100px 0;
+  }
+
+  .events-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+  }
+
+  .event-card-big {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: white;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    align-items: center;
+  }
+
+  .image-area {
+    position: relative;
+    height: 100%;
+    min-height: 400px;
+  }
+
+  .image-area img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .date-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 10px 20px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+  }
+
+  .info-area {
+    padding: 60px;
+  }
+
+  .location-tag {
+    color: var(--color-primary);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    display: block;
+  }
+
+  .info-area h2 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    color: var(--color-secondary);
+  }
+
+  .info-area p {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: var(--color-text-body);
+    margin-bottom: 30px;
+  }
+
+  .divider {
+    height: 4px;
+    width: 60px;
+    background: var(--color-primary);
+  }
+
+  @media (max-width: 1023px) {
+    .event-card-big {
+      grid-template-columns: 1fr;
+    }
+    .image-area {
+      min-height: 300px;
+    }
+    .info-area {
+      padding: 40px;
+    }
+  }
+</style>

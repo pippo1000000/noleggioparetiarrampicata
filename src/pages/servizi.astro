@@ -1,0 +1,757 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Button from '../components/Button.astro';
+import ContactModal from '../components/ContactModal.astro';
+
+const walls = [
+  {
+    title: 'Parete Mobile "Explorer"',
+    height: '7 metri',
+    surface: '50 mq',
+    setup: '60 minuti',
+    description: 'La nostra struttura più versatile, ideale per piazze, scuole e piccoli eventi aziendali. Offre 3 percorsi di diversa difficoltà.',
+    image: '/images/climbing-wall.png'
+  },
+  {
+    title: 'Parete Mobile "Adventure"',
+    height: '8.5 metri',
+    surface: '65 mq',
+    setup: '90 minuti',
+    description: 'Per chi cerca la massima visibilità e sfida. Questa parete imponente attira l\'attenzione da lontano ed è perfetta per grandi festival e promozioni brand.',
+    image: '/images/event-climbing.png'
+  },
+  {
+    title: 'Parete "Kids & Fun"',
+    height: '5 metri',
+    surface: '35 mq',
+    setup: '45 minuti',
+    description: 'Progettata specificamente per i più piccoli, con prese colorate e forme divertenti. La pendenza è studiata per garantire divertimento in totale sicurezza.',
+    image: '/images/rental-process.png'
+  }
+];
+
+const accessoryServices = [
+  {
+    title: 'Impianti Audio',
+    description: 'Sistemi di diffusione sonora professionali per musica d\'ambiente, annunci o piccoli concerti durante il tuo evento.',
+    icon: '🔊',
+    image: '/images/audio-equipment.png'
+  },
+  {
+    title: 'Service Tecnico',
+    description: 'Supporto tecnico completo per luci, audio e allestimenti, garantendo che ogni aspetto tecnologico funzioni senza intoppi.',
+    icon: '🛠️',
+    image: '/images/event-corporate.png'
+  },
+  {
+    title: 'Foto & Video',
+    description: 'Cattura ogni emozione con riprese professionali e scatti d\'autore, ottimizzati per il racconto sui social media.',
+    icon: '📸',
+    image: '/images/service-media.png'
+  },
+  {
+    title: 'Speaker & DJ',
+    description: 'Speaker coinvolgenti e DJ set d\'atmosfera per trasformare la scalata in un vero e proprio show partecipativo.',
+    icon: '🎤',
+    image: '/images/service-entertainment.png'
+  },
+  {
+    title: 'Produzione Eventi',
+    description: 'Gestione a 360 gradi, dal concept all\'allestimento finale, per eventi "chiavi in mano" senza alcuna preoccupazione.',
+    icon: '📋',
+    image: '/images/service-production.png'
+  },
+  {
+    title: 'Trasporto & Logistica',
+    description: 'Logistica affidabile per il trasporto delle pareti mobili e di tutte le attrezzature accessorie, ovunque tu sia.',
+    icon: '🚚',
+    image: '/images/service-transport.png'
+  }
+];
+---
+
+<Layout title="I Nostri Servizi | Noleggio Strutture">
+  <Navbar />
+  
+  <main class="services-page">
+    <!-- Hero Section -->
+    <header class="page-header">
+      <div class="container relative z-10">
+        <h1>I NOSTRI <span class="highlight">SERVIZI</span></h1>
+        <p class="subtitle">Soluzioni complete per trasformare ogni spazio in un'arena di avventura e divertimento.</p>
+      </div>
+    </header>
+
+    <!-- Catalogo Pareti -->
+    <section id="catalogo" class="catalog-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Catalogo <span class="highlight">Pareti</span></h2>
+          <p class="section-desc">Strutture mobili all'avanguardia, certificate e pronte all'uso in tempi record.</p>
+        </div>
+
+        <div class="walls-list">
+          {walls.map((wall, index) => (
+            <div class={`wall-card ${index % 2 !== 0 ? 'reverse' : ''}`}>
+              <div class="wall-image">
+                <img src={wall.image} alt={wall.title} />
+              </div>
+              <div class="wall-content">
+                <div class="wall-badge">Modello {index + 1}</div>
+                <h3>{wall.title}</h3>
+                <p class="description">{wall.description}</p>
+                
+                <div class="specs-grid">
+                  <div class="spec-item">
+                    <span class="label">Altezza</span>
+                    <span class="value">{wall.height}</span>
+                  </div>
+                  <div class="spec-item">
+                    <span class="label">Superficie</span>
+                    <span class="value">{wall.surface}</span>
+                  </div>
+                  <div class="spec-item">
+                    <span class="label">Montaggio</span>
+                    <span class="value">{wall.setup}</span>
+                  </div>
+                </div>
+
+                <div class="wall-actions">
+                  <Button 
+                    variant="primary" 
+                    size="md" 
+                    class="open-modal-btn" 
+                    data-wall-title={wall.title}
+                  >
+                    Richiedi informazioni
+                  </Button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Focus Sicurezza -->
+    <section class="safety-section">
+      <div class="container text-center">
+        <div class="safety-content">
+          <h2 class="section-title">Focus <span class="highlight">Sicurezza</span></h2>
+          <p class="lead">La sicurezza non è un'opzione, è il nostro standard fondamentale.</p>
+          
+          <ul class="safety-features">
+            <li>
+              <div class="check">✓</div>
+              <div class="text">
+                <strong>Certificazioni Europee</strong>
+                <p>Tutte le nostre pareti sono conformi alle normative EN 12572.</p>
+              </div>
+            </li>
+            <li>
+              <div class="check">✓</div>
+              <div class="text">
+                <strong>Operatori Qualificati</strong>
+                <p>Personale esperto presente per tutta la durata dell'evento.</p>
+              </div>
+            </li>
+            <li>
+              <div class="check">✓</div>
+              <div class="text">
+                <strong>Sistemi di Auto-Halyard</strong>
+                <p>Utilizziamo i migliori sistemi automatici di assicurazione (TRUBLUE).</p>
+              </div>
+            </li>
+            <li>
+              <div class="check">✓</div>
+              <div class="text">
+                <strong>Copertura Assicurativa</strong>
+                <p>Polizza dedicata per la massima tranquillità degli organizzatori.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Servizi Accessori -->
+    <section class="accessories-section">
+      <div class="container">
+        <div class="section-header centered">
+          <h2 class="section-title">Servizi <span class="highlight">Accessori</span></h2>
+          <p class="section-desc">Tutto ciò che serve per completare il tuo allestimento in un unico pacchetto.</p>
+        </div>
+
+        <!-- Featured Accessory: Noleggio Tendoni -->
+        <div class="featured-accessory">
+          <div class="featured-image">
+            <img src="/images/tent-rental.png" alt="Noleggio Tendoni" />
+          </div>
+          <div class="featured-content">
+            <div class="special-badge">Servizio Esclusivo</div>
+            <h3>Noleggio <span class="highlight">Tendoni</span></h3>
+            <p>Soluzioni di copertura eleganti e funzionali per proteggere il tuo evento dal sole o dalla pioggia, garantendo il massimo comfort in ogni stagione. Dai gazebo per piccoli raduni alle grandi tensostrutture per eventi di massa.</p>
+            <div class="featured-actions">
+              <Button 
+                variant="primary" 
+                size="md" 
+                class="open-modal-btn" 
+                data-wall-title="Noleggio Tendoni"
+              >
+                Richiedi informazioni
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <div class="accessories-grid">
+          {accessoryServices.map((service) => (
+            <div class="accessory-card">
+              <div class="card-image">
+                <img src={service.image} alt={service.title} />
+                <div class="card-icon">{service.icon}</div>
+              </div>
+              <div class="card-body">
+                <h3>{service.title}</h3>
+                <p>{service.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+      <div class="container text-center">
+        <h2>Pronto a scalare verso il <span class="highlight">successo</span>?</h2>
+        <p>Contattaci oggi per un preventivo personalizzato e trasforma il tuo evento.</p>
+        <div class="cta-actions">
+          <Button href="/contatti" variant="primary" size="lg">Richiedi Preventivo Gratis</Button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <ContactModal />
+</Layout>
+
+<script>
+  const modal = document.getElementById('contact-modal') as HTMLDialogElement;
+  const openButtons = document.querySelectorAll('.open-modal-btn');
+  const closeButton = document.getElementById('close-modal');
+  const messageField = document.getElementById('modal-message') as HTMLTextAreaElement;
+
+  openButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const wallTitle = button.getAttribute('data-wall-title');
+      if (messageField && wallTitle) {
+        messageField.value = `Buongiorno, vorrei avere più informazioni in merito al noleggio della parete "${wallTitle}".`;
+      }
+      modal?.showModal();
+    });
+  });
+
+  closeButton?.addEventListener('click', () => {
+    modal?.close();
+  });
+
+  // Close on backdrop click
+  modal?.addEventListener('click', (e) => {
+    const dialogDimensions = modal.getBoundingClientRect();
+    if (
+      e.clientX < dialogDimensions.left ||
+      e.clientX > dialogDimensions.right ||
+      e.clientY < dialogDimensions.top ||
+      e.clientY > dialogDimensions.bottom
+    ) {
+      modal.close();
+    }
+  });
+</script>
+
+<style>
+  .services-page {
+    background-color: var(--color-bg-primary);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+  }
+
+  .text-center { text-align: center; }
+  .relative { position: relative; }
+  .z-10 { z-index: 10; }
+
+  .highlight {
+    color: var(--color-primary);
+  }
+
+  /* Header Section */
+  .page-header {
+    height: 70vh;
+    min-height: 600px;
+    background-image: url('/assets/eventi_hero_bg.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65));
+    z-index: 1;
+  }
+
+  .page-header .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .page-header h1,
+  .page-header h1 span {
+    color: white !important;
+    font-size: clamp(3.5rem, 12vw, 7.5rem);
+    font-weight: 950;
+    margin: 0;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+  }
+
+  .page-header .highlight {
+    color: white !important;
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+    color: white;
+    opacity: 0.9;
+    font-weight: 400;
+  }
+
+  /* Section Styling */
+  .section-header {
+    margin-bottom: 60px;
+  }
+
+  .section-header.centered {
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    margin-bottom: 1rem;
+    color: var(--color-secondary);
+  }
+
+  .section-desc {
+    font-size: 1.25rem;
+    color: var(--color-text-subtle);
+    max-width: 600px;
+  }
+
+  .section-header.centered .section-desc {
+    margin: 0 auto;
+  }
+
+  /* Catalog List */
+  .catalog-section {
+    padding: 120px 0;
+  }
+
+  .walls-list {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+  }
+
+  .wall-card {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: center;
+    background: white;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    padding: 20px;
+    box-shadow: var(--shadow-md);
+  }
+
+  .wall-card.reverse {
+    direction: rtl;
+  }
+
+  .wall-card.reverse > * {
+    direction: ltr;
+  }
+
+  .wall-image {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    height: 450px;
+  }
+
+  .wall-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .wall-card:hover .wall-image img {
+    transform: scale(1.05);
+  }
+
+  .wall-content {
+    padding: 20px;
+  }
+
+  .wall-badge {
+    background: var(--color-bg-secondary);
+    color: var(--color-primary);
+    padding: 6px 15px;
+    border-radius: var(--radius-pill);
+    font-size: 0.85rem;
+    font-weight: 800;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
+
+  .wall-content h3 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    color: var(--color-secondary);
+  }
+
+  .description {
+    font-size: 1.15rem;
+    color: var(--color-text-body);
+    margin-bottom: 2rem;
+    line-height: 1.7;
+  }
+
+  .specs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    border-top: 1px solid var(--color-border);
+    padding-top: 2rem;
+  }
+
+  .spec-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .spec-item .label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--color-text-subtle);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .spec-item .value {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--color-secondary);
+  }
+
+  .wall-actions {
+    margin-top: 4rem;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  /* Safety Section */
+  .safety-section {
+    padding: 120px 0;
+    background-color: var(--color-secondary);
+    color: white;
+    overflow: hidden;
+  }
+
+  .safety-content .section-title {
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .lead {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 4rem;
+    opacity: 0.9;
+  }
+
+  .safety-features {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    text-align: left;
+  }
+
+  @media (max-width: 768px) {
+    .safety-features {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .safety-features li {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+
+  .safety-features li:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .check {
+    width: 32px;
+    height: 32px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+  }
+
+  .safety-features .text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .safety-features strong {
+    color: white;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.25rem;
+    font-weight: 800;
+  }
+
+  .safety-features p {
+    margin: 0;
+    font-size: 0.95rem;
+    opacity: 0.8;
+  }
+
+  /* Accessories Grid */
+  .accessories-section {
+    padding: 120px 0;
+  }
+
+  .accessories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+  }
+
+  .accessory-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease;
+  }
+
+  .accessory-card:hover {
+    transform: translateY(-10px);
+  }
+
+  .card-image {
+    position: relative;
+    height: 250px;
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .card-icon {
+    position: absolute;
+    bottom: -30px;
+    right: 30px;
+    width: 70px;
+    height: 70px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: var(--shadow-md);
+    border: 5px solid var(--color-bg-primary);
+  }
+
+  .card-body {
+    padding: 50px 30px 40px 30px;
+  }
+
+  .card-body h3 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: var(--color-secondary);
+  }
+
+  .card-body p {
+    color: var(--color-text-body);
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  /* Featured Accessory styling */
+  .featured-accessory {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    background: white;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 60px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--color-border);
+    align-items: center;
+  }
+
+  .featured-image {
+    height: 400px;
+    overflow: hidden;
+  }
+
+  .featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .featured-content {
+    padding: 60px;
+  }
+
+  .special-badge {
+    display: inline-block;
+    background: var(--color-bg-secondary);
+    color: var(--color-primary);
+    padding: 6px 15px;
+    border-radius: var(--radius-pill);
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .featured-content h3 {
+    font-size: 2.5rem;
+    font-weight: 950;
+    margin-bottom: 1.5rem;
+    color: var(--color-secondary);
+  }
+
+  .featured-content p {
+    font-size: 1.2rem;
+    color: var(--color-text-body);
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+
+  .featured-actions {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  /* Final CTA */
+  .final-cta {
+    padding: 150px 0;
+    background-color: var(--color-bg-secondary);
+  }
+
+  .final-cta h2 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 950;
+    margin-bottom: 1.5rem;
+  }
+
+  .final-cta p {
+    font-size: 1.5rem;
+    color: var(--color-text-subtle);
+    margin-bottom: 3rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 1023px) {
+    .wall-card, .safety-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .wall-image {
+      height: 350px;
+    }
+    .safety-visual {
+      height: 400px;
+    }
+    .floating-climber {
+      height: 100%;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .page-header h1 {
+      font-size: 3rem;
+    }
+    .specs-grid {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .accessory-card {
+      max-width: 100%;
+    }
+    .featured-accessory {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .featured-content {
+      padding: 40px 25px;
+    }
+    .featured-image {
+      height: 300px;
+    }
+  }
+</style>

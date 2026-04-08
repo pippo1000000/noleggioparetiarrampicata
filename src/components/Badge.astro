@@ -1,0 +1,44 @@
+---
+export interface Props {
+  variant?: 'primary' | 'secondary' | 'success' | 'warning';
+  class?: string;
+}
+
+const { variant = 'primary', class: className = '', ...rest } = Astro.props;
+
+const baseStyles = "inline-flex items-center px-4 py-2 rounded-pill font-medium text-sm text-inverse whitespace-nowrap";
+
+const variantStyles = {
+  primary: "bg-primary",
+  secondary: "bg-secondary",
+  success: "bg-success",
+  warning: "bg-warning",
+};
+
+const badgeClass = `${baseStyles} ${variantStyles[variant]} ${className}`;
+---
+
+<span class={badgeClass} {...rest}>
+  <slot />
+</span>
+
+<style>
+  .rounded-pill {
+    border-radius: 9999px;
+  }
+  .bg-primary { background-color: var(--color-primary); }
+  .bg-secondary { background-color: var(--color-secondary); }
+  .bg-success { background-color: var(--color-success); }
+  .bg-warning { background-color: var(--color-warning); }
+  
+  .text-inverse { color: var(--color-text-inverse); }
+  
+  .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+  .px-4 { padding-left: 1rem; padding-right: 1rem; }
+  .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+  
+  .inline-flex { display: inline-flex; }
+  .items-center { align-items: center; }
+  .font-medium { font-weight: 500; }
+  .whitespace-nowrap { white-space: nowrap; }
+</style>

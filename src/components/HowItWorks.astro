@@ -1,0 +1,229 @@
+---
+---
+
+<section id="come-funziona" class="how-it-works">
+  <div class="container">
+    <div class="section-layout">
+      <!-- Left Column: 9:16 Image -->
+      <div class="image-column">
+        <div class="image-wrapper">
+          <img src="/images/rental-process.png" alt="Processo di noleggio" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- Right Column: Title and Staggered List -->
+      <div class="content-column">
+        <h2 class="section-title">COME FUNZIONA IL <span class="highlight">NOLEGGIO</span></h2>
+        
+        <ol class="staggered-list">
+          <li class="list-item">
+            <span class="step-num">01</span>
+            <div class="step-content">
+              <h3>Consulenza Personale</h3>
+              <p>Analizziamo le tue esigenze per consigliarti le migliori strutture e attrezzature per il tuo evento.</p>
+            </div>
+          </li>
+          <li class="list-item">
+            <span class="step-num">02</span>
+            <div class="step-content">
+              <h3>Preventivo Su Misura</h3>
+              <p>Ricevi un'offerta dettagliata e trasparente, comprensiva di trasporto, montaggio e assistenza.</p>
+            </div>
+          </li>
+          <li class="list-item">
+            <span class="step-num">03</span>
+            <div class="step-content">
+              <h3>Logistica e Montaggio</h3>
+              <p>Il nostro team esperto si occupa della consegna puntuale e dell'installazione in totale sicurezza.</p>
+            </div>
+          </li>
+          <li class="list-item">
+            <span class="step-num">04</span>
+            <div class="step-content">
+              <h3>Supporto e Smontaggio</h3>
+              <p>Garantiamo assistenza durante l'evento e provvediamo allo smontaggio rapido al termine.</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="section-actions">
+          <a href="/servizi#catalogo" class="cta-button">
+            Scegli la parete per te
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .how-it-works {
+    background-color: var(--color-secondary);
+    color: var(--color-text-inverse);
+    padding: 120px 0;
+    overflow: hidden;
+  }
+
+
+
+  .section-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .section-layout {
+      grid-template-columns: 0.8fr 1.2fr;
+    }
+  }
+
+  /* Image Column (9:16) */
+  .image-column {
+    position: relative;
+    width: 100%;
+  }
+
+  .image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  }
+
+  .image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Content Column */
+  .section-title {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 950;
+    line-height: 0.9;
+    color: var(--color-text-inverse);
+    margin: 0 0 60px 0;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    max-width: 950px;
+    position: relative;
+    z-index: 20;
+  }
+
+  .highlight {
+    color: var(--color-primary);
+  }
+
+  /* Staggered List (Staircase effect) */
+  .staggered-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .list-item {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    transition: transform 0.3s ease;
+  }
+
+  /* The actual stumbling logic (staircase) */
+  @media (min-width: 768px) {
+    .list-item:nth-child(2) { transform: translateX(40px); }
+    .list-item:nth-child(3) { transform: translateX(80px); }
+    .list-item:nth-child(4) { transform: translateX(120px); }
+  }
+
+  .step-num {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--color-text-inverse);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+    font-family: var(--font-family-main);
+  }
+
+  .step-content h3 {
+    color: var(--color-text-inverse);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+  }
+
+  .step-content p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 450px;
+  }
+
+  .section-actions {
+    margin-top: 60px;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  @media (min-width: 768px) {
+    .section-actions {
+      margin-left: 120px; /* Aligned with the last staggered item */
+    }
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--color-primary);
+    color: white;
+    padding: 18px 40px;
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 20px rgba(30, 136, 229, 0.3);
+  }
+
+  .cta-button svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background-color: var(--color-primary-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(30, 136, 229, 0.4);
+    color: white;
+  }
+
+  .cta-button:hover svg {
+    transform: translateX(5px);
+  }
+
+  @media (max-width: 767px) {
+    .container {
+      padding: 0 30px;
+    }
+    .section-layout {
+      gap: 50px;
+    }
+    .image-wrapper {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+</style>

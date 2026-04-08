@@ -1,0 +1,96 @@
+---
+export interface Props {
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  class?: string;
+  target?: string;
+  type?: 'button' | 'submit' | 'reset';
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  class: className = '',
+  target,
+  type = 'button',
+  ...rest
+} = Astro.props;
+
+const baseStyles = "inline-flex items-center justify-center font-medium transition-all duration-300 ease-in-out cursor-pointer rounded-pill";
+
+// Variant Styles
+const variantStyles = {
+  primary: "bg-primary text-inverse hover:bg-primary-hover shadow-md hover:scale-105",
+  secondary: "bg-secondary text-inverse hover:bg-secondary-hover shadow-md hover:scale-105",
+  outline: "bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-inverse shadow-sm hover:scale-105",
+  ghost: "bg-transparent text-primary hover:bg-[rgba(30,136,229,0.1)] hover:scale-105",
+};
+
+// Size Styles
+const sizeStyles = {
+  sm: "px-4 py-2 text-sm",
+  md: "px-6 py-3 text-base",
+  lg: "px-8 py-4 text-lg",
+};
+
+const Element = href ? 'a' : 'button';
+const componentClass = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
+---
+
+<Element href={href} class={componentClass} target={target} type={href ? undefined : type} {...rest}>
+  <slot />
+</Element>
+
+<style>
+  .rounded-pill {
+    border-radius: 9999px;
+  }
+  .bg-primary { background-color: var(--color-primary); }
+  .bg-primary-hover { background-color: var(--color-primary-hover); }
+  .bg-secondary { background-color: var(--color-secondary); }
+  .bg-secondary-hover { background-color: var(--color-secondary-hover); }
+  
+  .text-inverse { color: var(--color-text-inverse); }
+  .text-primary { color: var(--color-primary); }
+  
+  .border-primary { border-color: var(--color-primary); }
+  
+  .shadow-md { box-shadow: var(--shadow-md); }
+  .shadow-sm { box-shadow: var(--shadow-sm); }
+  
+  .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+  .px-4 { padding-left: 1rem; padding-right: 1rem; }
+  .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+  .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+  .px-8 { padding-left: 2rem; padding-right: 2rem; }
+  
+  .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+  .text-base { font-size: 1rem; line-height: 1.5rem; }
+  .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+  
+  .inline-flex { display: inline-flex; }
+  .items-center { align-items: center; }
+  .justify-center { justify-content: center; }
+  
+  .font-medium { font-weight: 500; }
+  .cursor-pointer { cursor: pointer; }
+  
+  .transition-all { transition-property: all; }
+  .duration-300 { transition-duration: 300ms; }
+  .ease-in-out { transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+  
+  .border-2 { border-width: 2px; border-style: solid; }
+  .bg-transparent { background-color: transparent; }
+  
+  .hover\:scale-105:hover { transform: scale(1.05); }
+  .hover\:bg-primary-hover:hover { background-color: var(--color-primary-hover); }
+  .hover\:bg-secondary-hover:hover { background-color: var(--color-secondary-hover); }
+  .hover\:bg-primary:hover { background-color: var(--color-primary); }
+  .hover\:text-inverse:hover { color: var(--color-text-inverse); }
+  
+  button { border: none; font-family: inherit; }
+  a { text-decoration: none; display: inline-block; }
+</style>

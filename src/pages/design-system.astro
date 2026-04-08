@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import Badge from '../components/Badge.astro';
+---
+
+<Layout>
+	<main style="padding: 2rem; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 2rem;">
+		<header>
+			<h1>Noleggio Pareti Arrampicata</h1>
+			<p>Design System Visual Test Page</p>
+		</header>
+
+		<section style="display: flex; flex-direction: column; gap: 1rem;">
+			<h2>Typography</h2>
+			<h1>Heading 1 - Inter 800</h1>
+			<h2>Heading 2 - Inter 700</h2>
+			<h3>Heading 3 - Inter 700</h3>
+			<p>Body Text - Inter 400. This is a sample paragraph to demonstrate the regular body typography. <a href="#">This is a link</a>.</p>
+		</section>
+
+		<section style="display: flex; flex-direction: column; gap: 1rem;">
+			<h2>Colors</h2>
+			<div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+				<div style="width: 100px; height: 100px; background-color: var(--color-primary); color: white; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm);">Primary</div>
+				<div style="width: 100px; height: 100px; background-color: var(--color-secondary); color: white; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm);">Secondary</div>
+				<div style="width: 100px; height: 100px; background-color: var(--color-accent-light); color: black; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm);">Accent</div>
+				<div style="width: 100px; height: 100px; background-color: var(--color-success); color: white; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm);">Success</div>
+				<div style="width: 100px; height: 100px; background-color: var(--color-warning); color: white; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm);">Warning</div>
+			</div>
+		</section>
+
+		<section style="display: flex; flex-direction: column; gap: 1rem;">
+			<h2>Buttons</h2>
+			<div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+				<Button variant="primary">Primary Button</Button>
+				<Button variant="secondary">Secondary Button</Button>
+				<Button variant="outline">Outline Button</Button>
+				<Button variant="ghost">Ghost Button</Button>
+			</div>
+			<div style="display: flex; gap: 1rem; align-items: center;">
+				<Button size="sm">Small</Button>
+				<Button size="md">Medium</Button>
+				<Button size="lg">Large</Button>
+			</div>
+		</section>
+
+		<section style="display: flex; flex-direction: column; gap: 1rem;">
+			<h2>Badges</h2>
+			<div style="display: flex; gap: 1rem; align-items: center;">
+				<Badge variant="primary">Primary Badge</Badge>
+				<Badge variant="secondary">Secondary Badge</Badge>
+				<Badge variant="success">Success Badge</Badge>
+				<Badge variant="warning">Warning Badge</Badge>
+			</div>
+		</section>
+	</main>
+</Layout>

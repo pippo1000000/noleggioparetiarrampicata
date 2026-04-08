@@ -1,0 +1,320 @@
+---
+import Button from './Button.astro';
+
+const faqs = [
+  {
+    question: "Quali sono i requisiti di spazio per l'installazione?",
+    answer: "Le nostre pareti mobili richiedono generalmente un'area piana di circa 5x5 metri e un'altezza libera di almeno 7-8 metri, a seconda del modello scelto."
+  },
+  {
+    question: "Quanto tempo occorre per il montaggio?",
+    answer: "Il montaggio standard di una parete di arrampicata richiede circa 60-90 minuti. I tendoni possono richiedere da 2 a 5 ore a seconda delle dimensioni."
+  },
+  {
+    question: "Le strutture sono sicure per i bambini?",
+    answer: "Assolutamente sì. Utilizziamo sistemi di auto-assicurazione certificati e personale esperto per garantire la massima sicurezza a scalatori di ogni età."
+  },
+  {
+    question: "Fornite assistenza durante l'evento?",
+    answer: "Sì, il nostro servizio include sempre la presenza di operatori qualificati che gestiscono l'attività e assistono i partecipanti per tutta la durata del noleggio."
+  },
+  {
+    question: "Le vostre attrezzature sono certificate?",
+    answer: "Ogni nostra struttura e attrezzatura è accompagnata da regolari certificazioni di conformità e collaudi annuali in linea con le normative europee."
+  },
+  {
+    question: "Cosa succede in caso di pioggia?",
+    answer: "Le pareti possono operare anche con pioggia leggera, ma in caso di temporali o vento forte l'attività viene sospesa per sicurezza. I nostri tendoni sono invece completamente impermeabili."
+  },
+  {
+    question: "È necessaria una presa di corrente?",
+    answer: "Dipende dalla struttura. Alcune pareti e impianti audio richiedono una connessione standard 220V, ma possiamo fornire generatori su richiesta."
+  },
+  {
+    question: "In quali zone d'Italia operate?",
+    answer: "Operiamo principalmente nel Centro-Nord Italia, ma siamo attrezzati per trasporti e installazioni su tutto il territorio nazionale per eventi di lunga durata."
+  },
+  {
+    question: "Quali sono i tempi di prenotazione?",
+    answer: "Consigliamo di prenotare con almeno 4-6 settimane di anticipo, specialmente per i weekend estivi e i periodi festivi ad alta richiesta."
+  },
+  {
+    question: "Posso personalizzare le pareti con il mio logo?",
+    answer: "Certamente! Offriamo diverse opzioni di branding, dai banner magnetici alla personalizzazione completa delle superfici per massimizzare la visibilità del tuo marchio."
+  }
+];
+---
+
+<section class="faq-section">
+  <div class="safety-bg"></div>
+
+  <div class="container main-container">
+    <div class="title-column">
+      <div class="header-layer">
+        <h2 class="title-bg">DOMANDE <br/><span class="highlight">FREQUENTI</span></h2>
+      </div>
+    </div>
+
+    <div class="faq-layout">
+      <div class="faq-list">
+          {faqs.map((faq, index) => (
+            <details class="faq-item">
+              <summary>
+                <span class="q-num">{String(index + 1).padStart(2, '0')}</span>
+                <span class="question">{faq.question}</span>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </summary>
+              <div class="answer">
+                <p>{faq.answer}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+
+        <div class="cta-box">
+          <p>Hai altre domande o esigenze particolari?</p>
+          <Button href="/contatti" variant="primary" size="lg">Contattaci per info</Button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Foreground Layer - Preserved depth effect -->
+  <div class="foreground-climber">
+    <img src="/assets/boy_climbing.png" alt="Bambino che arrampica" />
+  </div>
+</section>
+
+<script>
+  // Logical exclusively: Accordion effect (close others when one opens)
+  const items = document.querySelectorAll<HTMLDetailsElement>('.faq-item');
+  items.forEach(item => {
+    item.addEventListener('toggle', () => {
+      if (item.open) {
+        items.forEach(other => {
+          if (other !== item) {
+            other.open = false;
+          }
+        });
+      }
+    });
+  });
+</script>
+
+<style>
+  .faq-section {
+    position: relative;
+    padding: 150px 0;
+    background-color: var(--color-bg-secondary);
+    min-height: 1200px;
+    overflow: clip; /* Clip doesn't break position: sticky unlike hidden */
+  }
+
+  .safety-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 50%, rgba(30, 136, 229, 0.03) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Grid Layout for stability */
+  .main-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    position: relative;
+    /* Removed z-index to allow children to stack with outside elements */
+  }
+
+  /* Left Column: Placeholder for Sticky Title */
+  .title-column {
+    position: relative;
+    height: 100%;
+  }
+
+  .header-layer {
+    position: sticky;
+    top: 350px;
+    z-index: 5;
+    pointer-events: none;
+    text-align: right; /* Align text to the right side of the column */
+  }
+
+  .title-bg {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 950;
+    line-height: 0.85;
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    opacity: 1;
+    user-select: none;
+    white-space: nowrap;
+    transform: translateX(-10%);
+    transition: transform 0.3s ease;
+  }
+
+  .highlight {
+    color: var(--color-primary);
+  }
+
+  /* Right Column: FAQ List */
+  .faq-layout {
+    position: relative;
+    z-index: 15;
+    padding-top: 100px;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 50px;
+  }
+
+  .faq-item {
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .faq-item[open] {
+    box-shadow: var(--shadow-md);
+    transform: translateX(10px);
+  }
+
+  summary {
+    list-style: none;
+    padding: 25px 30px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 20px;
+    font-weight: 700;
+    color: var(--color-secondary);
+    font-size: 1.1rem;
+    position: relative;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .q-num {
+    font-size: 0.85rem;
+    color: var(--color-primary);
+    font-weight: 900;
+    opacity: 0.6;
+  }
+
+  .question {
+    flex: 1;
+    line-height: 1.4;
+  }
+
+  .chevron {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+    color: var(--color-primary);
+  }
+
+  .faq-item[open] .chevron {
+    transform: rotate(180deg);
+  }
+
+  .answer {
+    padding: 0 30px 25px 75px;
+    color: var(--color-text-body);
+    line-height: 1.6;
+    font-size: 1.05rem;
+  }
+
+  .cta-box {
+    padding-left: 10px;
+  }
+
+  .cta-box p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: var(--color-text-subtle);
+  }
+
+  /* Climber Depth - Anchored to SECTION TOP LEFT */
+  .foreground-climber {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 900px;
+    z-index: 10; /* Set between title (5) and FAQ content (15) */
+    display: flex;
+    align-items: flex-start;
+    pointer-events: none;
+  }
+
+  .foreground-climber img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 30px 60px rgba(0,0,0,0.25));
+    transform: translateX(-35%); /* Moved further left to avoid obscuring text */
+  }
+
+  @media (max-width: 1023px) {
+    .faq-section {
+      padding: 80px 0;
+      min-height: auto;
+    }
+    .main-container {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      width: 100%;
+      padding: 0 20px;
+    }
+    .title-column {
+      width: 100%;
+    }
+    .header-layer {
+      position: relative;
+      top: 0;
+      text-align: center;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+    .title-bg {
+      white-space: normal;
+      transform: none;
+      font-size: clamp(2.5rem, 10vw, 4rem);
+      width: 100%;
+      margin: 0;
+    }
+    .faq-layout {
+      padding-top: 20px;
+    }
+    .foreground-climber {
+      display: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .faq-item[open] {
+      transform: none;
+    }
+    summary {
+      padding: 20px;
+      font-size: 1rem;
+    }
+    .answer {
+      padding: 0 20px 20px 20px;
+    }
+  }
+</style>

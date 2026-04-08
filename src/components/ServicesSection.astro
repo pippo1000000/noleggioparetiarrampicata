@@ -1,0 +1,196 @@
+---
+import Button from './Button.astro';
+---
+
+<section class="services-section-v5">
+  <div class="container">
+    <div class="text-block">
+      <h2 class="title-main">NOLEGGIO STRUTTURE PER EVENTI DI <span class="highlight-blue">OGNI TIPO</span></h2>
+      <p class="description-text">
+        Offriamo soluzioni complete per eventi indimenticabili. 
+        Siamo specializzati nel <strong>noleggio di pareti di arrampicata</strong> per l'intrattenimento sportivo, <strong>noleggio di eleganti tendoni</strong> per cerimonie e feste all'aperto, e fornitura professionale di <strong>impianti audio e apparecchiature service</strong> per garantire una resa sonora impeccabile ad ogni occasione.
+      </p>
+      <div class="cta-container">
+        <Button href="/servizi" variant="primary" size="lg">Scopri tutti i servizi</Button>
+      </div>
+    </div>
+    
+    <div class="visual-block">
+      <div class="static-image-stack">
+        <div class="visual-item visual-main">
+          <img src="/images/climbing-wall.png" alt="Noleggio pareti di arrampicata" loading="lazy" />
+        </div>
+        <div class="visual-item visual-secondary-top">
+          <img src="/images/tents.png" alt="Noleggio di tendoni" loading="lazy" />
+        </div>
+        <div class="visual-item visual-secondary-bottom">
+          <img src="/images/audio-equipment.png" alt="Noleggio impianti audio e service" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-section-v5 {
+    padding: 150px 0 120px 0; /* Precise 150px space as requested */
+    background-color: var(--color-bg-primary);
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+  }
+  
+  .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 80px;
+    align-items: start; /* Align content to the top to remove centering gap */
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .text-block {
+    z-index: 2;
+  }
+
+  .title-main {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 950;
+    line-height: 0.9;
+    color: var(--color-secondary);
+    margin: 0 0 40px 0;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    width: 150%; /* Expanded to ~75% of total container width */
+    position: relative;
+    z-index: 50;
+  }
+  
+  @media (max-width: 1023px) {
+    .title-main {
+      width: 100%;
+    }
+  }
+
+  .highlight-blue {
+    color: var(--color-primary);
+  }
+
+  .description-text {
+    font-size: 1.25rem;
+    color: var(--color-text-subtle);
+    line-height: 1.8;
+    margin-bottom: 40px;
+    max-width: 580px;
+  }
+
+  .description-text strong {
+    color: var(--color-text-main);
+    font-weight: 700;
+  }
+
+  /* Image Stack Layout - Absolute Zero Interactivity */
+  .visual-block {
+    position: relative;
+    height: 600px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 220px; /* Precise offset: 180px + 40px as requested */
+  }
+
+  .static-image-stack {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 650px;
+    pointer-events: none; /* No hover, no clicks, nothing */
+  }
+
+  .visual-item {
+    position: absolute;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    background-color: white;
+  }
+
+  .visual-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Positions adjusted for less overlap and more spacing */
+  .visual-main {
+    width: 55%;
+    height: 75%;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    z-index: 2;
+  }
+
+  .visual-secondary-top {
+    width: 50%;
+    height: 42%;
+    top: 0;
+    right: 0;
+    z-index: 1;
+  }
+
+  .visual-secondary-bottom {
+    width: 48%;
+    height: 40%;
+    bottom: 0;
+    right: 5%;
+    z-index: 3;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 1023px) {
+    .services-section-v5 {
+      padding: 80px 0;
+    }
+    .content-wrapper {
+      padding: 0 30px;
+      gap: 50px;
+    }
+    .visual-block {
+      height: 500px;
+    }
+    .static-image-stack {
+      max-width: 500px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .visual-block {
+      height: auto;
+    }
+    .static-image-stack {
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      max-width: 100%;
+    }
+    .visual-item {
+      position: relative !important;
+      width: 100% !important;
+      height: 350px !important;
+      top: auto !important;
+      left: auto !important;
+      right: auto !important;
+      bottom: auto !important;
+      transform: none !important;
+    }
+  }
+</style>

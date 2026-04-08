@@ -1,0 +1,173 @@
+---
+import Button from './Button.astro';
+---
+
+<dialog id="contact-modal" class="contact-modal">
+  <div class="modal-content">
+    <button id="close-modal" class="close-button" aria-label="Chiudi popup">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+
+    <div class="modal-header">
+      <h2>Richiedi <span class="highlight">Informazioni</span></h2>
+      <p>Inviaci una richiesta rapida per questa parete.</p>
+    </div>
+
+    <form class="contact-form" id="modal-form">
+      <div class="form-group">
+        <label for="modal-name">Nome</label>
+        <input type="text" id="modal-name" name="name" placeholder="Inserisci il tuo nome" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="modal-email">Email</label>
+        <input type="email" id="modal-email" name="email" placeholder="esempio@email.it" required />
+      </div>
+
+      <div class="form-group">
+        <label for="modal-message">Messaggio</label>
+        <textarea id="modal-message" name="message" rows="4" placeholder="Come possiamo aiutarti?" required></textarea>
+      </div>
+
+      <Button variant="primary" size="lg" class="submit-btn" type="submit">Invia Richiesta</Button>
+    </form>
+  </div>
+</dialog>
+
+<style>
+  .contact-modal {
+    border: none;
+    border-radius: var(--radius-xl);
+    padding: 0;
+    max-width: 600px;
+    width: 90%;
+    background: white;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+    overflow: visible;
+  }
+
+  .contact-modal::backdrop {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+
+  .modal-content {
+    padding: 60px 40px;
+    position: relative;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--color-bg-secondary);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--color-secondary);
+    transition: all 0.2s ease;
+    z-index: 10;
+  }
+
+  .close-button:hover {
+    background: var(--color-primary);
+    color: white;
+    transform: rotate(90deg);
+  }
+
+  .close-button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .modal-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .modal-header h2 {
+    font-size: 2.5rem;
+    font-weight: 950;
+    margin-bottom: 10px;
+    color: var(--color-secondary);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .highlight {
+    color: var(--color-primary);
+  }
+
+  .modal-header p {
+    color: var(--color-text-subtle);
+    font-size: 1.1rem;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-group label {
+    font-weight: 700;
+    color: var(--color-secondary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 14px 18px;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    background: var(--color-bg-secondary);
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background: white;
+  }
+
+  .submit-btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  /* Animations */
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(30px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .contact-modal[open] {
+    animation: modalIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @media (max-width: 480px) {
+    .modal-content {
+      padding: 50px 25px 40px 25px;
+    }
+    .modal-header h2 {
+      font-size: 2rem;
+    }
+  }
+</style>
