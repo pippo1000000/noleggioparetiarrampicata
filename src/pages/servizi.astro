@@ -3,13 +3,17 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Button from '../components/Button.astro';
 import ContactModal from '../components/ContactModal.astro';
+import { getImage } from 'astro:assets';
+import heroImage from '../assets/hero-servizi.png';
+
+const optimizedHero = await getImage({ src: heroImage, format: 'webp', width: 1920 });
 
 const walls = [
   {
     title: 'Parete boulder "Kids & fun"',
-    height: '7 metri',
+    height: '3,70-4,50 metri',
     width: '6 metri',
-    setup: '60 minuti',
+    setup: '2-4 ore',
     description: 'La nostra struttura più versatile, ideale per piazze, scuole e piccoli eventi aziendali. Pensata per la didattica e l\'avvicinamento allo sport.',
     image: '/images/wall-kids.jpg'
   },
@@ -76,7 +80,7 @@ const accessoryServices = [
   
   <main class="services-page">
     <!-- Hero Section -->
-    <header class="page-header">
+    <header class="page-header" style={`background-image: url(${optimizedHero.src});`}>
       <div class="container relative z-10">
         <h1>I NOSTRI <span class="highlight">SERVIZI</span></h1>
         <p class="subtitle">Soluzioni creative per trasformare ogni evento in occasione di avventura e divertimento.</p>
@@ -294,7 +298,6 @@ const accessoryServices = [
   .page-header {
     height: 70vh;
     min-height: 600px;
-    background-image: url('/assets/eventi_hero_bg.png');
     background-size: cover;
     background-position: center;
     display: flex;

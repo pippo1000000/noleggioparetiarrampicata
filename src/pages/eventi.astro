@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
+import heroImage from '../assets/hero-eventi.jpg';
 
 const events = await getCollection('eventi');
 const sortedEvents = events.sort((a, b) => {
@@ -9,13 +11,15 @@ const sortedEvents = events.sort((a, b) => {
   const dateB = new Date(b.data.sortDate).getTime();
   return dateB - dateA;
 });
+
+const optimizedHero = await getImage({ src: heroImage, format: 'webp', width: 1920 });
 ---
 
 <Layout title="I Nostri Eventi | Noleggio Strutture">
   <Navbar />
   
   <main class="events-page">
-    <header class="page-header">
+    <header class="page-header" style={`background-image: url(${optimizedHero.src});`}>
       <div class="container">
         <h1>I NOSTRI <span class="highlight">EVENTI</span></h1>
         <p class="subtitle">Scopri i progetti che abbiamo realizzato e le sfide che abbiamo vinto.</p>
@@ -84,7 +88,6 @@ const sortedEvents = events.sort((a, b) => {
   .page-header {
     height: 70vh;
     min-height: 600px;
-    background-image: url('/assets/eventi_hero_bg.png');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -382,7 +385,7 @@ const sortedEvents = events.sort((a, b) => {
 
 <script>
   function getYoutubeId(url) {
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|shorts\/)([^#\&\?]*).*/;
     const match = url.match(regExp);
     return (match && match[2].length === 11) ? match[2] : null;
   }

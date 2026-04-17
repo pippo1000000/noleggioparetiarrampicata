@@ -2,13 +2,17 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Button from '../components/Button.astro';
+import { getImage } from 'astro:assets';
+import heroImage from '../assets/hero-contatti.png';
+
+const optimizedHero = await getImage({ src: heroImage, format: 'webp', width: 1920 });
 ---
 
 <Layout title="Contattaci | Noleggio Strutture">
   <Navbar />
   
   <main class="contact-page">
-    <header class="page-header">
+    <header class="page-header" style={`background-image: url(${optimizedHero.src});`}>
       <div class="container">
         <h1>CONTATTI</h1>
         <p class="subtitle">Hai domande o vuoi un preventivo? Siamo a tua disposizione.</p>
@@ -54,13 +58,7 @@ import Button from '../components/Button.astro';
             </iframe>
           </div>
           <div class="info-items">
-            <div class="info-item">
-              <div class="icon">📞</div>
-              <div class="details">
-                <h3>Telefono</h3>
-                <p>+39 012 345 6789</p>
-              </div>
-            </div>
+
             <div class="info-item">
               <div class="icon">✉️</div>
               <div class="details">
@@ -143,7 +141,6 @@ import Button from '../components/Button.astro';
   .page-header {
     height: 70vh;
     min-height: 600px;
-    background-image: url('/assets/contatti_hero_bg.png');
     background-size: cover;
     background-position: center;
     display: flex;

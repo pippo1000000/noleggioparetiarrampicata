@@ -1,10 +1,14 @@
 ---
 import Button from './Button.astro';
+import { getImage } from 'astro:assets';
+import heroBg from '../assets/hero-home.png';
+
+const optimizedBg = await getImage({ src: heroBg, format: 'webp', width: 2560 }); // High width for 4K support as requested in previous conversations
 ---
 
 <section class="hero">
   <div class="hero-bg">
-    <img src="/assets/background.png" alt="Climbing wall background" class="bg-img" />
+    <img src={optimizedBg.src} alt="Climbing wall background" class="bg-img" />
     <div class="overlay"></div>
   </div>
 
@@ -35,7 +39,7 @@ import Button from './Button.astro';
 
   <!-- Stats Badge (Outside container to be at screen edge) -->
   <div class="stats-badge">
-    <div class="stats-number">50+</div>
+    <div class="stats-number">30+</div>
     <div class="stats-label">Eventi già<br/>realizzati</div>
   </div>
 </section>
