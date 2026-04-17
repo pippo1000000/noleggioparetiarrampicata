@@ -5,8 +5,8 @@ import { getCollection } from 'astro:content';
 
 const events = await getCollection('eventi');
 const sortedEvents = events.sort((a, b) => {
-  const dateA = a.data.date instanceof Date ? a.data.date.getTime() : 0;
-  const dateB = b.data.date instanceof Date ? b.data.date.getTime() : 0;
+  const dateA = new Date(a.data.sortDate).getTime();
+  const dateB = new Date(b.data.sortDate).getTime();
   return dateB - dateA;
 });
 ---
@@ -30,7 +30,7 @@ const sortedEvents = events.sort((a, b) => {
               <div class="image-area">
                 <img src={event.data.image} alt={event.data.title} />
                 <div class="date-overlay">
-                  {event.data.date.toLocaleDateString('it-IT', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  {String(event.data.date)}
                 </div>
               </div>
               <div class="info-area">
@@ -38,13 +38,34 @@ const sortedEvents = events.sort((a, b) => {
                 <h2>{event.data.title}</h2>
                 <p>{event.data.description}</p>
                 <div class="divider"></div>
-                {/* Content of the markdown file could be rendered here if needed */}
+                {event.data.videoUrl && (
+                  <button class="video-btn" data-video-url={event.data.videoUrl}>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    Guarda il video dell'evento
+                  </button>
+                )}
               </div>
             </div>
           ))}
         </div>
       </div>
     </section>
+
+    <dialog id="video-modal" class="video-modal">
+      <div class="modal-content">
+        <button id="close-video-modal" class="close-modal">&times;</button>
+        <div class="video-container">
+          <iframe 
+            id="video-frame"
+            width="100%" 
+            height="100%" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </dialog>
   </main>
 </Layout>
 
@@ -195,15 +216,204 @@ const sortedEvents = events.sort((a, b) => {
     background: var(--color-primary);
   }
 
-  @media (max-width: 1023px) {
+  @media (max-width: 1024px) {
     .event-card-big {
       grid-template-columns: 1fr;
     }
     .image-area {
-      min-height: 300px;
+      min-height: 350px;
     }
     .info-area {
-      padding: 40px;
+      padding: 40px 30px;
+    }
+  }
+
+  /* Premium Video Button */
+  .video-btn {
+    outline: none;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    background: var(--color-secondary);
+    color: white;
+    padding: 18px 35px;
+    border-radius: var(--radius-md);
+    font-weight: 800;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin-top: 35px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .video-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    transition: 0.5s;
+  }
+
+  .video-btn:hover::before {
+    left: 100%;
+  }
+
+  .video-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--color-primary);
+    transition: transform 0.3s ease;
+  }
+
+  .video-btn:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    background: #1a1a1a;
+  }
+
+  .video-btn:hover svg {
+    transform: scale(1.2);
+  }
+
+  /* Premium Video Modal Overlay */
+  .video-modal {
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    padding: 0;
+    border: none;
+    background: transparent;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+  }
+
+  .video-modal::backdrop {
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(25px);
+  }
+
+  .modal-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5vh 5vw;
+    position: relative;
+  }
+
+  .video-container {
+    width: 100%;
+    height: 100%;
+    max-width: 1600px;
+    max-height: 90vh;
+    background: black;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.8);
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .video-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .close-modal {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: white;
+    color: var(--color-secondary);
+    border: none;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10001;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  }
+
+  .close-modal:hover {
+    transform: rotate(90deg) scale(1.1);
+    background: var(--color-primary);
+    color: white;
+  }
+
+  @media (max-width: 768px) {
+    .modal-content {
+      padding: 10px;
+    }
+    .video-container {
+      height: auto;
+      aspect-ratio: 16 / 9;
+    }
+    .close-modal {
+      top: 15px;
+      right: 15px;
+      width: 40px;
+      height: 40px;
+      font-size: 1.5rem;
     }
   }
 </style>
+
+<script>
+  function getYoutubeId(url) {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+  }
+
+  const modal = document.getElementById('video-modal');
+  const frame = document.getElementById('video-frame');
+  const closeBtn = document.getElementById('close-video-modal');
+  const videoBtns = document.querySelectorAll('.video-btn');
+
+  videoBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const url = btn.getAttribute('data-video-url');
+      if (url) {
+        const id = getYoutubeId(url);
+        if (id) {
+          frame.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+          modal.showModal();
+        }
+      }
+    });
+  });
+
+  closeBtn?.addEventListener('click', () => {
+    modal.close();
+    frame.src = '';
+  });
+
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.close();
+      frame.src = '';
+    }
+  });
+</script>

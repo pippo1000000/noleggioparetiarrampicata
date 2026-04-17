@@ -46,11 +46,11 @@ const currentYear = new Date().getFullYear();
         </li>
         <li>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <a href="mailto:info@clbenj.it">info@clbenj.it</a>
+          <a href="mailto:info@noleggioparetiarrampicata.it">info@noleggioparetiarrampicata.it</a>
         </li>
         <li>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Via delle Rocce, 12, Roma (RM)</span>
+          <span><a href="https://www.google.com/maps/dir/?api=1&destination=Via+Roma+56+Rubano+PD" target="_blank" rel="noopener noreferrer">Via Roma 56, Rubano (PD)</a></span>
         </li>
       </ul>
     </div>
@@ -217,9 +217,21 @@ const currentYear = new Date().getFullYear();
     }
     .footer-grid {
       grid-template-columns: 1fr;
+      gap: 40px;
     }
     .footer-brand {
       grid-column: span 1;
+    }
+    .footer-brand .logo {
+      font-size: clamp(0.7rem, 4.8vw, 1.2rem);
+      white-space: nowrap;
+      letter-spacing: 0;
+    }
+    .footer-bottom .container {
+      padding: 0 20px;
+    }
+    .footer-bottom p {
+      font-size: 0.8rem;
     }
   }
 </style>

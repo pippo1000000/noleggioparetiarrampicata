@@ -8,8 +8,10 @@ const eventi = defineCollection({
     title: z.string(),
     description: z.string(),
     image: z.string(),
-    date: z.coerce.date(),
+    date: z.coerce.string(),
+    sortDate: z.coerce.date(),
     location: z.string(),
+    videoUrl: z.string().optional(),
   }),
 });
 

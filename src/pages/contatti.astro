@@ -44,7 +44,7 @@ import Button from '../components/Button.astro';
           <h2>Informazioni di <span class="highlight">contatto</span></h2>
           <div class="map-container">
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.654246110986!2d12.492230876615555!3d41.89021017124039!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132f61b65357fc81%3A0x2350e910bd2a33f4!2sColosseo!5e0!3m2!1sit!2sit!4v1711380000000!5m2!1sit!2sit" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2799.6432426895517!2d11.7907196759714!3d45.436593335967076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477ed82e3b9a86b3%3A0xd0dd062f2e121f69!2sVia%20Roma%2C%2056%2C%2035030%20Bosco%20PD!5e0!3m2!1sit!2sit!4v1744791097782!5m2!1sit!2sit" 
               width="100%" 
               height="250" 
               style="border:0;" 
@@ -65,14 +65,14 @@ import Button from '../components/Button.astro';
               <div class="icon">✉️</div>
               <div class="details">
                 <h3>Email</h3>
-                <p>info@clbenj.it</p>
+                <p>info@noleggioparetiarrampicata.it</p>
               </div>
             </div>
             <div class="info-item">
               <div class="icon">📍</div>
               <div class="details">
                 <h3>Sede</h3>
-                <p>Via delle Rocce, 12, Roma (RM)</p>
+                <p><a href="https://www.google.com/maps/dir/?api=1&destination=Via+Roma+56+Rubano+PD" target="_blank" rel="noopener noreferrer">Via Roma 56, Rubano (PD)</a></p>
               </div>
             </div>
           </div>
@@ -96,6 +96,44 @@ import Button from '../components/Button.astro';
     </section>
   </main>
 </Layout>
+
+<script>
+  const form = document.querySelector('.contact-form') as HTMLFormElement;
+  const submitBtn = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!submitBtn) return;
+
+    const originalText = submitBtn.innerText;
+    submitBtn.innerText = 'Invio in corso...';
+    submitBtn.disabled = true;
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        alert('Messaggio inviato con successo!');
+        form.reset();
+      } else {
+        alert('Si è verificato un errore durante l\'invio. Riprova più tardi.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Impossibile contattare il server.');
+    } finally {
+      submitBtn.innerText = originalText;
+      submitBtn.disabled = false;
+    }
+  });
+</script>
 
 <style>
   .contact-page {
@@ -254,6 +292,16 @@ import Button from '../components/Button.astro';
   .info-item p {
     color: var(--color-text-body);
     font-size: 1.1rem;
+  }
+
+  .info-item a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .info-item a:hover {
+    color: var(--color-primary);
   }
 
   .map-container {

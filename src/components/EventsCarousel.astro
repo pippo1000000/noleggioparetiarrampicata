@@ -4,8 +4,8 @@ import { getCollection } from 'astro:content';
 const events = await getCollection('eventi');
 // Sort by date descending, with safety check
 const allSortedEvents = events.sort((a, b) => {
-  const dateA = a.data.date instanceof Date ? a.data.date.getTime() : 0;
-  const dateB = b.data.date instanceof Date ? b.data.date.getTime() : 0;
+  const dateA = new Date(a.data.sortDate).getTime();
+  const dateB = new Date(b.data.sortDate).getTime();
   return dateB - dateA;
 });
 

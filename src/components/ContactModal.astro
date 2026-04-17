@@ -34,6 +34,48 @@ import Button from './Button.astro';
   </div>
 </dialog>
 
+<script>
+  const modalForm = document.getElementById('modal-form') as HTMLFormElement;
+  const submitBtn = modalForm?.querySelector('.submit-btn') as HTMLButtonElement;
+  const modal = document.getElementById('contact-modal') as HTMLDialogElement;
+
+  modalForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!submitBtn) return;
+
+    const originalText = submitBtn.innerText;
+    submitBtn.innerText = 'Invio in corso...';
+    submitBtn.disabled = true;
+
+    const formData = new FormData(modalForm);
+    const data = Object.fromEntries(formData.entries());
+    // Adding context that this request comes from a specific wall modal
+    data.subject = 'Richiesta informazioni Parete';
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        alert('Richiesta inviata con successo!');
+        modalForm.reset();
+        modal?.close();
+      } else {
+        alert('Errore durante l\'invio. Riprova più tardi.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Impossibile contattare il server.');
+    } finally {
+      submitBtn.innerText = originalText;
+      submitBtn.disabled = false;
+    }
+  });
+</script>
+
 <style>
   .contact-modal {
     border: none;

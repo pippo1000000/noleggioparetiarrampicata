@@ -6,28 +6,28 @@ import ContactModal from '../components/ContactModal.astro';
 
 const walls = [
   {
-    title: 'Parete Mobile "Explorer"',
+    title: 'Parete boulder "Kids & fun"',
     height: '7 metri',
-    surface: '50 mq',
+    width: '6 metri',
     setup: '60 minuti',
-    description: 'La nostra struttura più versatile, ideale per piazze, scuole e piccoli eventi aziendali. Offre 3 percorsi di diversa difficoltà.',
-    image: '/images/climbing-wall.png'
+    description: 'La nostra struttura più versatile, ideale per piazze, scuole e piccoli eventi aziendali. Pensata per la didattica e l\'avvicinamento allo sport.',
+    image: '/images/wall-kids.jpg'
   },
   {
-    title: 'Parete Mobile "Adventure"',
-    height: '8.5 metri',
-    surface: '65 mq',
-    setup: '90 minuti',
-    description: 'Per chi cerca la massima visibilità e sfida. Questa parete imponente attira l\'attenzione da lontano ed è perfetta per grandi festival e promozioni brand.',
-    image: '/images/event-climbing.png'
+    title: 'Parete Boulder "Entertainment"',
+    height: '3,70-4,50 metri',
+    width: '9-12 metri',
+    setup: '4-6 ore',
+    description: 'Il compromesso perfetto per chi cerca spettacolarità e intrattenimento. Questa parete attira l\'attenzione ed è perfetta per eventi di media dimensione e promozioni brand. ',
+    image: '/images/wall-entertainment.jpg'
   },
   {
-    title: 'Parete "Kids & Fun"',
-    height: '5 metri',
-    surface: '35 mq',
-    setup: '45 minuti',
-    description: 'Progettata specificamente per i più piccoli, con prese colorate e forme divertenti. La pendenza è studiata per garantire divertimento in totale sicurezza.',
-    image: '/images/rental-process.png'
+    title: 'Parete Boulder "Competition"',
+    height: '3,70-4,50 metri',
+    width: '12-18 metri',
+    setup: '8-10 ore',
+    description: 'Una vera e propria parete da competizione, per chi cerca la massima visibilità e sfida. Perfetta per grandi eventi, è in grado di accogliere un elevato numero di partecipanti.',
+    image: '/images/wall-competition.jpg'
   }
 ];
 
@@ -36,25 +36,25 @@ const accessoryServices = [
     title: 'Impianti Audio',
     description: 'Sistemi di diffusione sonora professionali per musica d\'ambiente, annunci o piccoli concerti durante il tuo evento.',
     icon: '🔊',
-    image: '/images/audio-equipment.png'
+    image: '/images/service-audio.jpg'
   },
   {
     title: 'Service Tecnico',
     description: 'Supporto tecnico completo per luci, audio e allestimenti, garantendo che ogni aspetto tecnologico funzioni senza intoppi.',
     icon: '🛠️',
-    image: '/images/event-corporate.png'
+    image: '/images/service-technical.jpg'
   },
   {
     title: 'Foto & Video',
     description: 'Cattura ogni emozione con riprese professionali e scatti d\'autore, ottimizzati per il racconto sui social media.',
     icon: '📸',
-    image: '/images/service-media.png'
+    image: '/images/service-video.png'
   },
   {
     title: 'Speaker & DJ',
     description: 'Speaker coinvolgenti e DJ set d\'atmosfera per trasformare la scalata in un vero e proprio show partecipativo.',
     icon: '🎤',
-    image: '/images/service-entertainment.png'
+    image: '/images/service-dj.png'
   },
   {
     title: 'Produzione Eventi',
@@ -79,7 +79,7 @@ const accessoryServices = [
     <header class="page-header">
       <div class="container relative z-10">
         <h1>I NOSTRI <span class="highlight">SERVIZI</span></h1>
-        <p class="subtitle">Soluzioni complete per trasformare ogni spazio in un'arena di avventura e divertimento.</p>
+        <p class="subtitle">Soluzioni creative per trasformare ogni evento in occasione di avventura e divertimento.</p>
       </div>
     </header>
 
@@ -108,8 +108,8 @@ const accessoryServices = [
                     <span class="value">{wall.height}</span>
                   </div>
                   <div class="spec-item">
-                    <span class="label">Superficie</span>
-                    <span class="value">{wall.surface}</span>
+                    <span class="label">Larghezza</span>
+                    <span class="value">{wall.width}</span>
                   </div>
                   <div class="spec-item">
                     <span class="label">Montaggio</span>
@@ -146,7 +146,7 @@ const accessoryServices = [
               <div class="check">✓</div>
               <div class="text">
                 <strong>Certificazioni Europee</strong>
-                <p>Tutte le nostre pareti sono conformi alle normative EN 12572.</p>
+                <p>Tutte le nostre pareti sono conformi alle normative europee.</p>
               </div>
             </li>
             <li>
@@ -159,8 +159,8 @@ const accessoryServices = [
             <li>
               <div class="check">✓</div>
               <div class="text">
-                <strong>Sistemi di Auto-Halyard</strong>
-                <p>Utilizziamo i migliori sistemi automatici di assicurazione (TRUBLUE).</p>
+                <strong>Verifiche Costanti</strong>
+                <p>Controlliamo con frequenza il corretto montaggio delle nostre strutture.</p>
               </div>
             </li>
             <li>
@@ -186,12 +186,12 @@ const accessoryServices = [
         <!-- Featured Accessory: Noleggio Tendoni -->
         <div class="featured-accessory">
           <div class="featured-image">
-            <img src="/images/tent-rental.png" alt="Noleggio Tendoni" />
+            <img src="/images/tent-rental.jpg" alt="Noleggio Tendoni" />
           </div>
           <div class="featured-content">
             <div class="special-badge">Servizio Esclusivo</div>
             <h3>Noleggio <span class="highlight">Tendoni</span></h3>
-            <p>Soluzioni di copertura eleganti e funzionali per proteggere il tuo evento dal sole o dalla pioggia, garantendo il massimo comfort in ogni stagione. Dai gazebo per piccoli raduni alle grandi tensostrutture per eventi di massa.</p>
+            <p>Soluzioni di copertura eleganti e funzionali per proteggere il tuo evento dal sole o dalla pioggia, garantendo il massimo comfort in ogni stagione. Dai gazebo per piccoli raduni alle grandi tende stretch per eventi di massa.</p>
             <div class="featured-actions">
               <Button 
                 variant="primary" 
@@ -639,19 +639,19 @@ const accessoryServices = [
   /* Featured Accessory styling */
   .featured-accessory {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 0;
     background: white;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    margin-bottom: 60px;
+    margin-bottom: 80px;
     box-shadow: var(--shadow-lg);
     border: 1px solid var(--color-border);
-    align-items: center;
+    align-items: stretch;
   }
 
   .featured-image {
-    height: 400px;
+    height: 550px;
     overflow: hidden;
   }
 
@@ -662,7 +662,11 @@ const accessoryServices = [
   }
 
   .featured-content {
-    padding: 60px;
+    padding: 60px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
   }
 
   .special-badge {

@@ -159,8 +159,22 @@ import Button from './Button.astro';
   }
 
   @media (max-width: 768px) {
+    .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .logo a {
+      font-size: clamp(0.7rem, 4vw, 0.95rem);
+    }
     .menu-wrapper {
       display: none;
+    }
+    .cta {
+      flex-shrink: 0;
+    }
+    .navbar {
+      padding: 1rem 0;
     }
   }
 </style>
