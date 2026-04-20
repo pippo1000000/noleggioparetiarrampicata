@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Footer from '../components/Footer.astro';
 import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 import CookieConsent from '../components/CookieConsent.astro';
+import GoogleConsentMode from '../components/GoogleConsentMode.astro';
 ---
 <!doctype html>
 <html lang="it">
@@ -16,6 +17,7 @@ import CookieConsent from '../components/CookieConsent.astro';
 		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 		<meta name="generator" content={Astro.generator} />
 		<title>Noleggio Pareti Arrampicata</title>
+		<GoogleConsentMode />
 		<CookieConsent />
 		<GoogleAnalytics />
 	</head>

@@ -1,0 +1,19 @@
+---
+---
+<!-- Google Consent Mode Default -->
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  // Imposta i valori di default per la Consent Mode v2
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'wait_for_update': 500
+  });
+
+  // Opzionale: Supporto per la rielaborazione dei dati dopo il consenso
+  window.gtag = gtag;
+</script>
