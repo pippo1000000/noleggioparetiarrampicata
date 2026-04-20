@@ -1,6 +1,3 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <!-- Sfondo circolare scuro (Nero/Charcoal della palette) -->
-  <circle cx="64" cy="64" r="64" fill="#000000" />
-  <!-- Emoji centrata -->
-  <text y="94" x="50%" text-anchor="middle" font-size="80" font-family="sans-serif">🧗‍♂️</text>
+  <text y="105" x="50%" text-anchor="middle" font-size="110" font-family="sans-serif">🧗‍♂️</text>
 </svg>
