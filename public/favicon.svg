@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <!-- Sfondo circolare con il colore primario del sito -->
-  <circle cx="64" cy="64" r="64" fill="#1E88E5" />
+  <!-- Sfondo circolare scuro (Nero/Charcoal della palette) -->
+  <circle cx="64" cy="64" r="64" fill="#000000" />
   <!-- Emoji centrata -->
   <text y="94" x="50%" text-anchor="middle" font-size="80" font-family="sans-serif">🧗‍♂️</text>
 </svg>
