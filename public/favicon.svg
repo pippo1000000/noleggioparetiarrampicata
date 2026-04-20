@@ -1,17 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <defs>
-    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#1E88E5;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#1565C0;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <!-- Background Rounded Square -->
-  <rect width="128" height="128" rx="32" fill="url(#bg-grad)"/>
-  <!-- Stylized Mountain/Wall Peaks -->
-  <path d="M30 95 L64 35 L98 95 Z" fill="#FFFFFF" />
-  <path d="M50 95 L75 55 L100 95 Z" fill="#FFFFFF" opacity="0.6" />
-  <!-- Climbing Rope "S" curve -->
-  <path d="M45 40 Q 64 20 83 40" fill="none" stroke="#FF9800" stroke-width="6" stroke-linecap="round" />
-  <!-- Sun/Hold accent -->
-  <circle cx="95" cy="35" r="8" fill="#FF9800" />
+  <!-- Sfondo circolare con il colore primario del sito -->
+  <circle cx="64" cy="64" r="64" fill="#1E88E5" />
+  <!-- Emoji centrata -->
+  <text y="94" x="50%" text-anchor="middle" font-size="80" font-family="sans-serif">🧗‍♂️</text>
 </svg>
