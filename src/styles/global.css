@@ -89,8 +89,14 @@ a:hover {
 }
 
 .container {
-  width: 90%;
+  width: 95%;
   max-width: 1400px;
   margin: 0 auto;
   position: relative;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 90%;
+  }
 }
