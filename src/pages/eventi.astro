@@ -13,6 +13,8 @@ const sortedEvents = events.sort((a, b) => {
 });
 
 const optimizedHero = await getImage({ src: heroImage, format: 'webp', width: 1920 });
+
+export const prerender = true;
 ---
 
 <Layout title="I Nostri Eventi | Noleggio Strutture">

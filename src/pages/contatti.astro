@@ -6,6 +6,8 @@ import { getImage } from 'astro:assets';
 import heroImage from '../assets/hero-contatti.png';
 
 const optimizedHero = await getImage({ src: heroImage, format: 'webp', width: 1920 });
+
+export const prerender = true;
 ---
 
 <Layout title="Contattaci | Noleggio Strutture">
