@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 ---
 
-<section id="come-funziona" class="how-it-works">
+<section class="how-it-works">
   <div class="container">
     <div class="section-layout">
       <!-- Left Column: 9:16 Image -->
@@ -14,7 +14,7 @@ import { Image } from 'astro:assets';
 
       <!-- Right Column: Title and Staggered List -->
       <div class="content-column">
-        <h2 class="section-title">COME FUNZIONA IL <span class="highlight">NOLEGGIO</span></h2>
+        <h2 id="come-funziona" class="section-title">COME FUNZIONA IL <span class="highlight">NOLEGGIO</span></h2>
         
         <ol class="staggered-list">
           <li class="list-item">
@@ -114,6 +114,7 @@ import { Image } from 'astro:assets';
     max-width: 950px;
     position: relative;
     z-index: 20;
+    scroll-margin-top: 120px;
   }
 
   .highlight {
