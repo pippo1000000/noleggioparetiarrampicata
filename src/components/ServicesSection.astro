@@ -1,5 +1,6 @@
 ---
 import Button from './Button.astro';
+import { Image } from 'astro:assets';
 ---
 
 <section class="services-section-v5">
@@ -18,13 +19,13 @@ import Button from './Button.astro';
     <div class="visual-block">
       <div class="static-image-stack">
         <div class="visual-item visual-main">
-          <img src="/images/service-wall.jpg" alt="Noleggio pareti di arrampicata" loading="lazy" />
+          <Image src="/images/service-wall.jpg" alt="Noleggio pareti di arrampicata" width={600} height={450} format="webp" />
         </div>
         <div class="visual-item visual-secondary-top">
-          <img src="/images/service-tent.jpg" alt="Noleggio di tendoni" loading="lazy" />
+          <Image src="/images/service-tent.jpg" alt="Noleggio di tendoni" width={400} height={300} format="webp" />
         </div>
         <div class="visual-item visual-secondary-bottom">
-          <img src="/images/service-entertainment.jpg" alt="Noleggio impianti audio e service" loading="lazy" />
+          <Image src="/images/service-entertainment.jpg" alt="Noleggio impianti audio e service" width={400} height={250} format="webp" />
         </div>
       </div>
     </div>

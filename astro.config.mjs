@@ -13,7 +13,7 @@ export default defineConfig({
     sitemap(),
   ],
   image: {
-    format: ['avif', 'webp'],
+    format: ['webp'],
     service: { entrypoint: 'astro/assets/services/sharp' },
   },
   server: {

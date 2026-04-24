@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Button from '../components/Button.astro';
 import ContactModal from '../components/ContactModal.astro';
-import { getImage } from 'astro:assets';
+import { getImage, Image } from 'astro:assets';
 import heroImage from '../assets/hero-servizi.png';
 
 const optimizedHero = await getImage({ src: heroImage, format: 'webp', width: 1920 });
@@ -99,7 +99,7 @@ const accessoryServices = [
           {walls.map((wall, index) => (
             <div class={`wall-card ${index % 2 !== 0 ? 'reverse' : ''}`}>
               <div class="wall-image">
-                <img src={wall.image} alt={wall.title} />
+                <Image src={wall.image} alt={wall.title} width={800} height={450} format="webp" />
               </div>
               <div class="wall-content">
                 <div class="wall-badge">Modello {index + 1}</div>
@@ -190,7 +190,7 @@ const accessoryServices = [
         <!-- Featured Accessory: Noleggio Tendoni -->
         <div class="featured-accessory">
           <div class="featured-image">
-            <img src="/images/tent-rental.jpg" alt="Noleggio Tendoni" />
+            <Image src="/images/tent-rental.jpg" alt="Noleggio Tendoni" width={800} height={550} format="webp" />
           </div>
           <div class="featured-content">
             <div class="special-badge">Servizio Esclusivo</div>
@@ -213,7 +213,7 @@ const accessoryServices = [
           {accessoryServices.map((service) => (
             <div class="accessory-card">
               <div class="card-image">
-                <img src={service.image} alt={service.title} />
+                <Image src={service.image} alt={service.title} width={400} height={250} format="webp" />
                 <div class="card-icon">{service.icon}</div>
               </div>
               <div class="card-body">

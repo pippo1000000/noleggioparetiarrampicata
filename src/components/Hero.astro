@@ -4,7 +4,7 @@ import { getImage, Image } from 'astro:assets';
 import heroBg from '../assets/hero-home.png';
 import climberImg from '../assets/images/climber.png';
 
-const optimizedBg = await getImage({ src: heroBg, format: 'avif', width: 2560 }); 
+const optimizedBg = await getImage({ src: heroBg, format: 'webp', width: 2560 }); 
 ---
 
 <section class="hero">
@@ -34,7 +34,7 @@ const optimizedBg = await getImage({ src: heroBg, format: 'avif', width: 2560 })
 
     <!-- 3D Element: The Climber -->
     <div class="climber-wrapper">
-      <Image src={climberImg} alt="Climber" class="climber-img" width={1000} format="avif" />
+      <Image src={climberImg} alt="Climber" class="climber-img" width={1000} format="webp" />
     </div>
   </div>
 

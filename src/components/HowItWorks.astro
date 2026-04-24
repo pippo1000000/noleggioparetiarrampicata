@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 ---
 
 <section id="come-funziona" class="how-it-works">
@@ -7,7 +8,7 @@
       <!-- Left Column: 9:16 Image -->
       <div class="image-column">
         <div class="image-wrapper">
-          <img src="/images/rental-process.jpg" alt="Processo di noleggio" loading="lazy" />
+          <Image src="/images/rental-process.jpg" alt="Processo di noleggio" width={600} height={1066} format="webp" />
         </div>
       </div>
 
