@@ -1,9 +1,9 @@
----
 import Button from './Button.astro';
-import { getImage } from 'astro:assets';
+import { getImage, Image } from 'astro:assets';
 import heroBg from '../assets/hero-home.png';
+import climberImg from '../assets/images/climber.png';
 
-const optimizedBg = await getImage({ src: heroBg, format: 'webp', width: 2560 }); // High width for 4K support as requested in previous conversations
+const optimizedBg = await getImage({ src: heroBg, format: 'avif', width: 2560 }); 
 ---
 
 <section class="hero">
@@ -33,7 +33,7 @@ const optimizedBg = await getImage({ src: heroBg, format: 'webp', width: 2560 })
 
     <!-- 3D Element: The Climber -->
     <div class="climber-wrapper">
-      <img src="/assets/climber.png" alt="Climber" class="climber-img" />
+      <Image src={climberImg} alt="Climber" class="climber-img" width={1000} format="avif" />
     </div>
   </div>
 

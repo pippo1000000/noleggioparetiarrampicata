@@ -1,7 +1,7 @@
 ---
 title: "Crash fest - Bergamo"
 description: "Il consueto format itinerante in grado di attrarre arrampicatori da tutta la provincia, tra musica, festa e tanto divertimento."
-image: "/images/event-crashfest-bergamo.jpg"
+image: "../../assets/images/event-crashfest-bergamo.jpg"
 date: "Agosto 2024"
 sortDate: 2024-08-01
 location: "Bergamo, IT"

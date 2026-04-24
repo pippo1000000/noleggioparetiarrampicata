@@ -1,7 +1,7 @@
 ---
 title: "Valle Orco Climbing Festival"
 description: "Gestione dei workshop e della competizione durante l’evento di arrampicata internazionale, con supporto tecnico e montaggio tendone"
-image: "/images/event-valle-orco.jpg"
+image: "../../assets/images/event-valle-orco.jpg"
 date: "Settembre 2025"
 sortDate: 2025-09-02
 location: "Ceresole Reale, IT"

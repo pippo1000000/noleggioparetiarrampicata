@@ -1,5 +1,7 @@
 ---
 import Button from './Button.astro';
+import { Image } from 'astro:assets';
+import climberBoy from '../assets/images/boy_climbing.png';
 
 const faqs = [
   {
@@ -49,6 +51,19 @@ const faqs = [
 ];
 ---
 
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+})} />
+
 <section class="faq-section">
   <div class="safety-bg"></div>
 
@@ -87,7 +102,7 @@ const faqs = [
 
   <!-- Foreground Layer - Preserved depth effect -->
   <div class="foreground-climber">
-    <img src="/assets/boy_climbing.png" alt="Bambino che arrampica" />
+    <Image src={climberBoy} alt="Bambino che arrampica" width={800} format="avif" />
   </div>
 </section>
 

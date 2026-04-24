@@ -4,6 +4,29 @@ import Footer from '../components/Footer.astro';
 import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 import CookieConsent from '../components/CookieConsent.astro';
 import GoogleConsentMode from '../components/GoogleConsentMode.astro';
+import SchemaOrg from '../components/SchemaOrg.astro';
+import AIContext from '../components/AIContext.astro';
+
+interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+	city?: string;
+	eventType?: string;
+}
+
+const { 
+	title = "Noleggio Pareti Arrampicata", 
+	description = "Noleggio strutture per arrampicata sportiva per eventi, festival e team building in tutta Italia e Europa.",
+	image = "/og-main.jpg",
+	city,
+	eventType
+} = Astro.props;
+
+const siteUrl = "https://noleggioparetiarrampicata.it";
+const ogTitle = city && eventType 
+	? `Noleggio Parete Arrampicata a ${city} per ${eventType} | Realizzazioni`
+	: title;
 ---
 <!doctype html>
 <html lang="it">
@@ -15,13 +38,34 @@ import GoogleConsentMode from '../components/GoogleConsentMode.astro';
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 		<meta name="generator" content={Astro.generator} />
-		<title>Noleggio Pareti Arrampicata</title>
+		
+		<!-- Primary Meta Tags -->
+		<title>{ogTitle}</title>
+		<meta name="title" content={ogTitle} />
+		<meta name="description" content={description} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={siteUrl} />
+		<meta property="og:title" content={ogTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL(image, siteUrl)} />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={siteUrl} />
+		<meta property="twitter:title" content={ogTitle} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={new URL(image, siteUrl)} />
+
+		<SchemaOrg />
 		<GoogleConsentMode />
 		<CookieConsent />
 		<GoogleAnalytics />
 	</head>
 	<body>
 		<slot />
+		<AIContext />
 		<Footer />
 	</body>
 </html>

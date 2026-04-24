@@ -41,6 +41,7 @@ const optimizedHero = await getImage({ src: heroImage, format: 'webp', width: 19
             </div>
 
             <Button variant="primary" size="lg" class="submit-btn" type="submit">Invia Messaggio</Button>
+            <p class="privacy-notice">Inviando questo modulo, dichiaro di aver letto la <a href="/privacy-policy">Privacy Policy</a>.</p>
           </form>
         </div>
 
@@ -254,6 +255,18 @@ const optimizedHero = await getImage({ src: heroImage, format: 'webp', width: 19
   .submit-btn {
     width: 100%;
     margin-top: 10px;
+  }
+
+  .privacy-notice {
+    font-size: 0.8rem;
+    color: var(--color-text-subtle);
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .privacy-notice a {
+    color: var(--color-primary);
+    text-decoration: underline;
   }
 
   .info-items {

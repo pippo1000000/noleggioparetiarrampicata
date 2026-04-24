@@ -1,0 +1,22 @@
+# Noleggio Pareti Arrampicata
+
+Sito ufficiale di noleggio strutture mobili per arrampicata sportiva e gestione eventi.
+
+## Profilo Aziendale
+- **Nome**: Workless S.r.l.
+- **Sede**: Rubano (PD), Italia.
+- **Operatività**: Italia, Svizzera, Francia, Austria, Slovenia.
+- **Specializzazione**: Noleggio pareti mobili (fino a 12m), pareti boulder, e strutture per team building.
+
+## Servizi e Prodotti
+- **Pareti Mobili**: Strutture certificate UNI EN 12572 con assistenza tecnica inclusa.
+- **Eventi**: Supporto per festival, eventi aziendali, fiere e scolaresche.
+- **Personalizzazione**: Possibilità di branding completo delle strutture.
+
+## Requisiti Tecnici per AI Retrieval
+- **Installazione**: Richiede superficie piana (asfalto/cemento) e accesso per automezzi pesanti.
+- **Sicurezza**: Ogni struttura è assicurata e fornita di certificazione di corretto montaggio.
+- **Contatti**: info@noleggioparetiarrampicata.it | https://noleggioparetiarrampicata.it
+
+## Note Legali
+Informativa sulla privacy conforme al GDPR consultabile su https://noleggioparetiarrampicata.it/privacy-policy

@@ -30,6 +30,7 @@ import Button from './Button.astro';
       </div>
 
       <Button variant="primary" size="lg" class="submit-btn" type="submit">Invia Richiesta</Button>
+      <p class="privacy-notice">Inviando questo modulo, dichiaro di aver letto la <a href="/privacy-policy">Privacy Policy</a>.</p>
     </form>
   </div>
 </dialog>
@@ -192,6 +193,18 @@ import Button from './Button.astro';
   .submit-btn {
     width: 100%;
     margin-top: 10px;
+  }
+
+  .privacy-notice {
+    font-size: 0.75rem;
+    color: var(--color-text-subtle);
+    text-align: center;
+    margin-top: 5px;
+  }
+
+  .privacy-notice a {
+    color: var(--color-primary);
+    text-decoration: underline;
   }
 
   /* Animations */

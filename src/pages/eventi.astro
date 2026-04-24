@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import { getCollection } from 'astro:content';
-import { getImage } from 'astro:assets';
+import { getImage, Image } from 'astro:assets';
 import heroImage from '../assets/hero-eventi.jpg';
 
 const events = await getCollection('eventi');
@@ -32,7 +32,7 @@ const optimizedHero = await getImage({ src: heroImage, format: 'webp', width: 19
           {sortedEvents.map((event) => (
             <div class="event-card-big">
               <div class="image-area">
-                <img src={event.data.image} alt={event.data.title} />
+                <Image src={event.data.image} alt={event.data.title} width={800} height={600} format="avif" />
                 <div class="date-overlay">
                   {String(event.data.date)}
                 </div>
