@@ -12,8 +12,8 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    const API_KEY = process.env.ELASTIC_EMAIL_API_KEY;
-    const RECIPIENT = process.env.CONTACT_RECIPIENT_EMAIL;
+    const API_KEY = import.meta.env.ELASTIC_EMAIL_API_KEY;
+    const RECIPIENT = import.meta.env.CONTACT_RECIPIENT_EMAIL;
 
     if (!API_KEY || !RECIPIENT) {
       console.error('Configurazione email mancante in .env');
@@ -62,17 +62,18 @@ export const POST: APIRoute = async ({ request }) => {
         { status: 200 }
       );
     } else {
-      const errorData = await response.json();
-      console.error('Errore Elastic Email:', errorData);
+      const errorText = await response.text();
+      console.error('Errore Elastic Email Status:', response.status);
+      console.error('Errore Elastic Email Body:', errorText);
       return new Response(
-        JSON.stringify({ message: "Impossibile inviare l'email." }),
+        JSON.stringify({ message: "Impossibile inviare l'email. Errore del fornitore.", details: errorText }),
         { status: 500 }
       );
     }
   } catch (error) {
     console.error('Errore API send-email:', error);
     return new Response(
-      JSON.stringify({ message: 'Errore interno del server.' }),
+      JSON.stringify({ message: 'Errore interno del server.', error: String(error) }),
       { status: 500 }
     );
   }
