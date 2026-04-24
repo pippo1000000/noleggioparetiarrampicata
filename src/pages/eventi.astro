@@ -21,7 +21,7 @@ export const prerender = true;
   <Navbar />
   
   <main class="events-page">
-    <header class="page-header" style={`background-image: url(${optimizedHero.src});`}>
+    <header class="page-header">
       <div class="container">
         <h1>I NOSTRI <span class="highlight">EVENTI</span></h1>
         <p class="subtitle">Scopri i progetti che abbiamo realizzato e le sfide che abbiamo vinto.</p>
@@ -75,7 +75,7 @@ export const prerender = true;
   </main>
 </Layout>
 
-<style>
+<style define:vars={{ heroBg: `url(${optimizedHero.src})` }}>
   .events-page {
     background-color: var(--color-bg-secondary);
     min-height: 100vh;
@@ -90,6 +90,7 @@ export const prerender = true;
   .page-header {
     height: 70vh;
     min-height: 600px;
+    background-image: var(--heroBg);
     background-size: cover;
     background-position: center;
     display: flex;

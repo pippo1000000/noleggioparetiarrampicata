@@ -14,7 +14,7 @@ export const prerender = true;
   <Navbar />
   
   <main class="contact-page">
-    <header class="page-header" style={`background-image: url(${optimizedHero.src});`}>
+    <header class="page-header">
       <div class="container">
         <h1>CONTATTI</h1>
         <p class="subtitle">Hai domande o vuoi un preventivo? Siamo a tua disposizione.</p>
@@ -54,7 +54,8 @@ export const prerender = true;
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2799.6432426895517!2d11.7907196759714!3d45.436593335967076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477ed82e3b9a86b3%3A0xd0dd062f2e121f69!2sVia%20Roma%2C%2056%2C%2035030%20Bosco%20PD!5e0!3m2!1sit!2sit!4v1744791097782!5m2!1sit!2sit" 
               width="100%" 
               height="250" 
-              style="border:0;" 
+              height="250" 
+              class="map-frame"
               allowfullscreen="" 
               loading="lazy" 
               referrerpolicy="no-referrer-when-downgrade">
@@ -66,7 +67,7 @@ export const prerender = true;
               <div class="icon">✉️</div>
               <div class="details">
                 <h3>Email</h3>
-                <p>info@noleggioparetiarrampicata.it</p>
+                <p><a href="#" class="e-link" data-e="ti.atacidpimaraiterapoiggelon@ofni">info...</a></p>
               </div>
             </div>
             <div class="info-item">
@@ -136,7 +137,16 @@ export const prerender = true;
   });
 </script>
 
-<style>
+<script>
+  // Email Obfuscation
+  document.querySelectorAll('.e-link').forEach(el => {
+    const e = el.getAttribute('data-e').split('').reverse().join('');
+    el.href = 'mailto:' + e;
+    el.textContent = e;
+  });
+</script>
+
+<style define:vars={{ heroBg: `url(${optimizedHero.src})` }}>
   .contact-page {
     background-color: var(--color-bg-primary);
   }
@@ -144,6 +154,7 @@ export const prerender = true;
   .page-header {
     height: 70vh;
     min-height: 600px;
+    background-image: var(--heroBg);
     background-size: cover;
     background-position: center;
     display: flex;
@@ -325,6 +336,10 @@ export const prerender = true;
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--color-border);
     margin-bottom: 30px;
+  }
+
+  .map-frame {
+    border: 0;
   }
 
   /* Workless Collective Section */

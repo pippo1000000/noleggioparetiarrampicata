@@ -16,14 +16,15 @@ interface Props {
 }
 
 const { 
-	title = "Noleggio Pareti Arrampicata", 
-	description = "Noleggio strutture per arrampicata sportiva per eventi, festival e team building in tutta Italia e Europa.",
+	title = "Noleggio Pareti Arrampicata per Eventi e Team Building", 
+	description = "Specialisti nel noleggio pareti arrampicata mobili per eventi, festival e team building in tutta Italia. Strutture certificate e montaggio professionale.",
 	image = "/images/climbing-wall.png",
 	city,
 	eventType
 } = Astro.props;
 
 const siteUrl = "https://noleggioparetiarrampicata.it";
+const canonicalURL = new URL(Astro.url.pathname, siteUrl).href;
 const ogTitle = city && eventType 
 	? `Noleggio Parete Arrampicata a ${city} per ${eventType} | Realizzazioni`
 	: title;
@@ -38,6 +39,7 @@ const ogTitle = city && eventType
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 		<meta name="generator" content={Astro.generator} />
+		<link rel="canonical" href={canonicalURL} />
 		
 		<!-- Primary Meta Tags -->
 		<title>{ogTitle}</title>

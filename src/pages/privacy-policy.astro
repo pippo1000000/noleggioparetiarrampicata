@@ -184,7 +184,7 @@ export const prerender = true;
           <p>
             In conformità all’articolo 13(2)(c) del GDPR, hai il diritto di revocare il tuo consenso al trattamento dei tuoi dati personali in qualsiasi momento. In qualità di visitatore di questo sito web, puoi regolare o revocare facilmente il tuo consenso direttamente tramite il banner dei consensi presente sul sito. In alternativa, se preferisci, puoi contattare il gestore del sito web utilizzando i recapiti forniti in questa informativa sulla privacy. Ti preghiamo di notare che la revoca del consenso non influisce sulla liceità di alcun trattamento effettuato prima della revoca.
           </p>
-          <p>Per esercitare tali diritti, contattaci all’indirizzo <a href="mailto:info@worklesscollective.com">info@worklesscollective.com</a>.</p>
+          <p>Per esercitare tali diritti, contattaci all’indirizzo <a href="#" class="e-link" data-e="moc.evitcellocsselkrow@ofni">info...</a>.</p>
           <p>Espleteremo i tuoi diritti solo dopo aver ricevuto la tua richiesta scritta per l’esercizio di uno specifico diritto indicato sopra e solo dopo aver verificato la validità della tua identità.</p>
           <p>Le tue richieste saranno soddisfatte, oppure il soddisfacimento sarà rifiutato specificando i motivi di tale rifiuto, entro un mese dalla data di presentazione della richiesta conforme alle nostre regole interne e al GDPR. Tale termine può essere prorogato di ulteriori due mesi se la richiesta riguarda un ampio volume di dati personali o altre richieste esaminate contemporaneamente. Ti informeremo di tale proroga entro un mese dal ricevimento della richiesta, indicando le ragioni del ritardo. Ti forniremo una risposta nella modalità da te scelta.</p>
           <p>Potremmo rifiutare di soddisfare la tua richiesta se si applicano le eccezioni e/o limitazioni all’esercizio dei diritti degli interessati previste dal GDPR e/o se la tua richiesta risulta manifestamente infondata o eccessiva. Se rifiutiamo di soddisfare la tua richiesta, ti forniremo per iscritto i motivi di tale rifiuto.</p>
@@ -222,7 +222,7 @@ export const prerender = true;
           <ul class="contact-details">
             <li><strong>Nome:</strong> Workless S.r.l.</li>
             <li><strong>Indirizzo:</strong> Via Roma, 56, Rubano (PD)</li>
-            <li><strong>Email:</strong> <a href="mailto:info@worklesscollective.com">info@worklesscollective.com</a></li>
+            <li><strong>Email:</strong> <a href="#" class="e-link" data-e="moc.evitcellocsselkrow@ofni">info...</a></li>
             <li><strong>Sito web:</strong> <a href="https://noleggioparetiarrampicata.it">https://noleggioparetiarrampicata.it</a></li>
           </ul>
         </section>
@@ -230,6 +230,17 @@ export const prerender = true;
     </div>
   </main>
 </Layout>
+
+<script>
+  // Email Obfuscation
+  document.querySelectorAll('.e-link').forEach(el => {
+    const e = el.getAttribute('data-e').split('').reverse().join('');
+    if (e) {
+      el.href = 'mailto:' + e;
+      el.textContent = e;
+    }
+  });
+</script>
 
 <style>
   .privacy-page {
