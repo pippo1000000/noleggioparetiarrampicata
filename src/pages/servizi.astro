@@ -726,9 +726,21 @@ export const prerender = true;
 
   /* Responsive */
   @media (max-width: 1023px) {
+    .container {
+      padding: 0 20px;
+    }
     .wall-card, .safety-grid {
       grid-template-columns: 1fr;
       gap: 40px;
+    }
+    .wall-card {
+      padding: 10px;
+    }
+    .wall-content {
+      padding: 20px 10px;
+    }
+    .wall-content h3 {
+      font-size: clamp(1.8rem, 8vw, 2.22rem);
     }
     .wall-image {
       height: 350px;
@@ -742,12 +754,37 @@ export const prerender = true;
   }
 
   @media (max-width: 767px) {
+    .container {
+      padding: 0 15px;
+    }
     .page-header h1 {
-      font-size: 3rem;
+      font-size: clamp(2.5rem, 15vw, 4rem);
+    }
+    .section-title {
+      font-size: 2.2rem;
+    }
+    .wall-card {
+      padding: 0;
+      border-radius: var(--radius-lg);
+    }
+    .wall-image {
+      height: 250px;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      margin: 0;
+    }
+    .wall-content {
+      padding: 25px 20px;
+    }
+    .wall-content h3 {
+      font-size: 1.8rem;
+    }
+    .wall-actions {
+      margin-top: 2.5rem;
     }
     .specs-grid {
       grid-template-columns: 1fr;
-      text-align: center;
+      text-align: left;
+      gap: 15px;
     }
     .accessory-card {
       max-width: 100%;
