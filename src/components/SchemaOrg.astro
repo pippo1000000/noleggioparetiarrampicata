@@ -7,10 +7,19 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "EquipmentRentalBusiness",
+  "@type": ["EquipmentRentalBusiness", "Organization"],
+  "@id": "https://noleggioparetiarrampicata.it/#organization",
   "name": "Noleggio Pareti Arrampicata",
+  "alternativeName": "Rental Climbing Walls Italy",
   "url": "https://noleggioparetiarrampicata.it",
-  "logo": "https://noleggioparetiarrampicata.it/logo.png",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://noleggioparetiarrampicata.it/logo.png"
+  },
+  "brand": {
+    "@type": "Brand",
+    "name": "Noleggio Pareti Arrampicata"
+  },
   "serviceType": "Noleggio strutture per arrampicata sportiva",
   "description": "Specialisti nel noleggio di pareti mobili da arrampicata in tutta Italia e paesi limitrofi per eventi, festival e team building.",
   "areaServed": [

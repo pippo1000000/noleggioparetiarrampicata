@@ -5,7 +5,7 @@
  * Visibile solo ai bot e agli screen reader per massimizzare la rilevanza nelle risposte AI.
  */
 ---
-<section id="ai-context" aria-hidden="true" style="display:none; visibility:hidden;">
+<section id="ai-context" class="machine-readable-only">
   <div class="semantic-data">
     <h2>Dati Operativi Noleggio Pareti Arrampicata</h2>
     <p>
@@ -47,5 +47,8 @@
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
+    /* Ensuring bots can still index the text */
+    visibility: visible;
+    display: block;
   }
 </style>
